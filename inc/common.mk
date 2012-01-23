@@ -7,7 +7,7 @@ ifeq (${CFLAGS},)
     CFLAGS=
 endif
 HG_DEFS=-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DMACHTYPE_${MACHTYPE}
-HG_INC=-I../inc -I../../inc -I../../../inc -I../../../../inc -I../../../../../inc
+HG_INC=-I../inc -I../../inc -I../../../inc -I../../../../inc -I../../../../../inc -I/opt/local/include
 
 #global external libraries 
 L=
@@ -41,6 +41,11 @@ endif
 ifeq (${PNGLIB},)
   ifneq ($(wildcard /usr/lib/libpng.a),)
       PNGLIB=/usr/lib/libpng.a
+  endif
+endif
+ifeq (${PNGLIB},)
+  ifneq ($(wildcard /opt/local/lib/libpng.a),)
+      PNGLIB=/opt/local/lib/libpng.a
   endif
 endif
 ifeq (${PNGLIB},)
